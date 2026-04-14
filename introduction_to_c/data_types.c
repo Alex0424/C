@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <float.h>
+#include <stdlib.h>
+#include <string.h>
 
 void signed_integers() {
   signed char test_char = CHAR_MIN;            // -2⁷  to 2⁷  - 1
@@ -42,7 +44,23 @@ void boolean() {
   printf("true bool check: %s\n", is_true ? "true" : "false");
   bool is_false = false;
   printf("false bool digit: %d\n", is_false);
-  printf("false bool check: %s\n", is_false ? "true" : "false");
+  printf("false bool check: %s\n\n", is_false ? "true" : "false");
+}
+
+void string() {
+  char name_one[] = "first"; // list of chars | same as ['f', 'i', 'r', 's', 't'] + '\0'
+
+  char *name_two = "second";  // pointer to string literal
+  
+  char *name_three = malloc(10); // dynamically allocated string
+  strcpy(name_three, "third");
+  
+  printf("first string: %s\nsecond string: %s\nthird string: %s\n",
+      name_one,
+      name_two,
+      name_three);
+
+  free(name_three); // release memory that was previously (name_three) allocated with malloc
 }
 
 int main(){
@@ -50,6 +68,8 @@ int main(){
   unsigned_integers();
   floating_point_numbers();
   boolean();
+  string();
+
   return 0;
 }
 
